@@ -1,5 +1,5 @@
-import "./canvas-big";
-import "./canvas-small";
+import "./bilinearInterpolationPart";
+import "./trilinearInterpolationPart";
 
 const canvas: HTMLCanvasElement | null = document.querySelector("#canvas");
 const context = canvas!.getContext("2d");

@@ -1,20 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.image = void 0;
-const canvas_big_1 = require("./canvas-big");
+const canvasSmall_1 = require("./canvasSmall");
+const canvasBig_1 = require("./canvasBig");
 const lerp_1 = require("./lerp");
-const canvasSmall = document.querySelector("#canvas-small");
-const contextSmall = canvasSmall.getContext("2d");
-exports.image = new Image();
-exports.image.crossOrigin = "";
-exports.image.src = "http://127.0.0.1:8080/asset/white.jpg";
-exports.image.onload = () => {
+const image = new Image();
+image.crossOrigin = "";
+image.src = "http://127.0.0.1:8080/asset/white.jpg";
+image.onload = () => {
     // 设置加载完成后的回调函数
-    contextSmall.drawImage(exports.image, 0, 0, canvasSmall.width, canvasSmall.height);
-    const imageDataSmall = contextSmall.getImageData(0, 0, canvasSmall.width, canvasSmall.height);
+    canvasSmall_1.contextSmall.drawImage(image, 0, 0, canvasSmall_1.canvasSmall.width, canvasSmall_1.canvasSmall.height);
+    const imageDataSmall = canvasSmall_1.contextSmall.getImageData(0, 0, canvasSmall_1.canvasSmall.width, canvasSmall_1.canvasSmall.height);
     const dataSmall = imageDataSmall.data;
     const dataSmallSide = Math.sqrt(dataSmall.length / 4); // 边长
-    const dataBigSide = Math.sqrt(canvas_big_1.dataBig.length / 4); // 边长
+    const dataBigSide = Math.sqrt(canvasBig_1.dataBig.length / 4); // 边长
     const ratio = (dataSmallSide - 1) / dataBigSide;
     for (let y = 0; y < dataBigSide; y++) {
         for (let x = 0; x < dataBigSide; x++) {
@@ -23,7 +21,7 @@ exports.image.onload = () => {
             // 映射到小画布上对应的坐标
             const smallX = x * ratio;
             const smallY = y * ratio;
-            (0, lerp_1.bilinearInterpolation)(dataSmall, canvas_big_1.dataBig, smallX, smallY, dataSmallSide, index);
+            (0, lerp_1.bilinearInterpolation)(dataSmall, canvasBig_1.dataBig, smallX, smallY, dataSmallSide, index);
             /*       // 用距离最近的 texel 值作为当前 pixel 值
             simpleInterpolation(
               dataSmall,
@@ -35,5 +33,5 @@ exports.image.onload = () => {
             ); */
         }
     }
-    canvas_big_1.contextBig.putImageData(canvas_big_1.imageDataBig, 0, 0);
+    canvasBig_1.contextBig.putImageData(canvasBig_1.imageDataBig, 0, 0);
 };

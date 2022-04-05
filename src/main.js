@@ -1,1 +1,1 @@
-import "./ts-js/canvas.js";
+import "./ts-js/canvas";

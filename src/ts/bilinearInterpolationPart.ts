@@ -1,10 +1,8 @@
-import { dataBig, contextBig, imageDataBig } from "./canvas-big";
+import { contextSmall, canvasSmall } from "./canvasSmall";
+import { dataBig, contextBig, imageDataBig } from "./canvasBig";
 import { bilinearInterpolation, simpleInterpolation } from "./lerp";
-const canvasSmall: HTMLCanvasElement | null =
-  document.querySelector("#canvas-small");
-const contextSmall = canvasSmall!.getContext("2d");
 
-export const image = new Image();
+const image = new Image();
 image.crossOrigin = "";
 image.src = "http://127.0.0.1:8080/asset/white.jpg";
 

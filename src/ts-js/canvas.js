@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-require("./canvas-big");
-require("./canvas-small");
+require("./bilinearInterpolationPart");
+require("./trilinearInterpolationPart");
 const canvas = document.querySelector("#canvas");
 const context = canvas.getContext("2d");
 const width = 100;
